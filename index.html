@@ -6,17 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body { text-align:center; font-family: Arial; background:#000; color:#fff; margin-top:50px; }
-    button { 
-      width:80px; 
-      height:80px; 
-      font-size:20px; 
-      margin:10px; 
-      border-radius:10px; 
-      cursor:pointer; 
-      background: #888;   /* cor neutra */
-      color: #fff;        /* texto branco */
-      border: none;
-    }
+    button { width:80px; height:80px; font-size:20px; margin:10px; border-radius:10px; cursor:pointer; }
+    .up { background:green; }
+    .down { background:blue; }
+    .left { background:orange; }
+    .right { background:purple; }
+    .stop { background:red; }
     .row { display:flex; justify-content:center; align-items:center; }
   </style>
 </head>
@@ -24,15 +19,15 @@
   <h1>Controle Remoto MaelCar</h1>
 
   <div class="row">
-    <button class="up">↑</button>
+    <button class="up" onclick="sendCmd('F')">↑</button>
   </div>
   <div class="row">
-    <button class="left">←</button>
-    <button class="stop">S</button>
-    <button class="right">→</button>
+    <button class="left" onclick="sendCmd('L')">←</button>
+    <button class="stop" onclick="sendCmd('S')">S</button>
+    <button class="right" onclick="sendCmd('R')">→</button>
   </div>
   <div class="row">
-    <button class="down">↓</button>
+    <button class="down" onclick="sendCmd('B')">↓</button>
   </div>
 
   <h2>Mael Tecnologias</h2>
@@ -60,16 +55,6 @@
         .then(() => console.log("Comando enviado:", cmd))
         .catch((error) => console.error("Erro ao enviar:", error));
     }
-
-    // torna a função global pra os botões funcionarem
-    window.sendCmd = sendCmd;
-
-    // adiciona eventos aos botões
-    document.querySelector(".up").addEventListener("click", () => sendCmd('F'));
-    document.querySelector(".down").addEventListener("click", () => sendCmd('B'));
-    document.querySelector(".left").addEventListener("click", () => sendCmd('L'));
-    document.querySelector(".right").addEventListener("click", () => sendCmd('R'));
-    document.querySelector(".stop").addEventListener("click", () => sendCmd('S'));
   </script>
 </body>
 </html>
