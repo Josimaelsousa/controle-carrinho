@@ -19,15 +19,15 @@
   <h1>Controle Remoto MaelCar</h1>
 
   <div class="row">
-    <button class="up" onclick="sendCmd('F')">↑</button>
+    <button class="up">↑</button>
   </div>
   <div class="row">
-    <button class="left" onclick="sendCmd('L')">←</button>
-    <button class="stop" onclick="sendCmd('S')">S</button>
-    <button class="right" onclick="sendCmd('R')">→</button>
+    <button class="left">←</button>
+    <button class="stop">S</button>
+    <button class="right">→</button>
   </div>
   <div class="row">
-    <button class="down" onclick="sendCmd('B')">↓</button>
+    <button class="down">↓</button>
   </div>
 
   <h2>Mael Tecnologias</h2>
@@ -55,6 +55,16 @@
         .then(() => console.log("Comando enviado:", cmd))
         .catch((error) => console.error("Erro ao enviar:", error));
     }
+
+    // torna a função global pra os botões funcionarem
+    window.sendCmd = sendCmd;
+
+    // adiciona eventos aos botões
+    document.querySelector(".up").addEventListener("click", () => sendCmd('F'));
+    document.querySelector(".down").addEventListener("click", () => sendCmd('B'));
+    document.querySelector(".left").addEventListener("click", () => sendCmd('L'));
+    document.querySelector(".right").addEventListener("click", () => sendCmd('R'));
+    document.querySelector(".stop").addEventListener("click", () => sendCmd('S'));
   </script>
 </body>
 </html>
